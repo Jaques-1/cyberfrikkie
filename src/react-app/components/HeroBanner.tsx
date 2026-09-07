@@ -55,14 +55,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ profile }) => {
               </span>
             </div>
 
-            {/* Main Brand Logo Lockup */}
-            <div className="mt-1 flex items-baseline gap-1">
-              <span className="font-mono text-3xl sm:text-5xl font-black tracking-tight text-[#39FF8A]">
-                cyber
-              </span>
-              <span className="font-mono text-3xl sm:text-5xl font-black tracking-tight text-[#E8672C]">
-                frikkie
-              </span>
+            {/* Main Brand Logo Lockup with CRT Glitch Offset */}
+            <div className="relative inline-flex items-baseline font-mono font-bold tracking-tight text-3xl sm:text-5xl select-none mt-1">
+              <div className="absolute top-0.5 left-0.5 opacity-30 blur-[0.5px] pointer-events-none" aria-hidden="true">
+                <span className="text-[#39FF8A]">cyber</span>
+                <span className="text-[#E8672C]">frikkie</span>
+              </div>
+              <div className="relative z-10">
+                <span className="text-[#39FF8A]">cyber</span>
+                <span className="text-[#E8672C]">frikkie</span>
+              </div>
             </div>
 
             <p className="text-xs sm:text-sm font-serif text-[#E8E2D4] mt-2 max-w-xl leading-relaxed">
