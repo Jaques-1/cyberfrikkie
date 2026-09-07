@@ -4,9 +4,6 @@ import {
   Rss, 
   BarChart3, 
   User, 
-  Sun, 
-  Moon, 
-  Zap, 
   RefreshCw, 
   Activity 
 } from 'lucide-react';
@@ -14,8 +11,6 @@ import {
 interface HeaderProps {
   activeTab: TabType;
   onSelectTab: (tab: TabType) => void;
-  darkMode: boolean;
-  onToggleDarkMode: () => void;
   onRefreshData: () => void;
   isRefreshing: boolean;
 }
@@ -23,53 +18,62 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   onSelectTab,
-  darkMode,
-  onToggleDarkMode,
   onRefreshData,
   isRefreshing
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <header className="sticky top-0 z-40 bg-[#14100D]/90 backdrop-blur-md border-b border-[#4A453B] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           
-          {/* Brand Logo & Edge Indicator */}
+          {/* Brand Logo Lockup & Icon Mark */}
           <div className="flex items-center gap-3">
             <div 
               onClick={() => onSelectTab('overview')}
               className="flex items-center gap-3 cursor-pointer group"
             >
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 p-0.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <div className="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-indigo-400 group-hover:text-amber-400 transition-colors" />
-                </div>
+              {/* Circular Icon Mark: Braai tongs meets circuit trace */}
+              <div className="w-10 h-10 rounded-full border-2 border-[#39FF8A] bg-[#14100D] flex items-center justify-center relative shadow-[0_0_12px_rgba(57,255,138,0.15)] group-hover:border-[#E8672C] transition-colors">
+                <svg className="w-5 h-5 text-[#39FF8A] group-hover:text-[#E8672C] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M7 7l10 10M17 7L7 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="12" cy="12" r="2" fill="#39FF8A" className="animate-pulse" />
+                </svg>
               </div>
 
               <div>
+                {/* Split Wordmark: cyber (green) + frikkie (rust) */}
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-black tracking-tight text-slate-900 dark:text-white">
-                    cyberfrikkie
-                  </span>
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="glitch-offset" data-text="cyberfrikkie">
+                    <span className="font-mono text-xl sm:text-2xl font-black tracking-tight text-[#39FF8A]">
+                      cyber
+                    </span>
+                    <span className="font-mono text-xl sm:text-2xl font-black tracking-tight text-[#E8672C]">
+                      frikkie
+                    </span>
+                  </div>
+
+                  <span className="hidden lg:inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded border border-[#4A453B] text-[#39FF8A] bg-[#14100D]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#39FF8A] animate-pulse" />
                     Cloudflare Worker
                   </span>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 hidden md:block">
-                  Edge Developer Hub • Blog & Radar Metrics
+                
+                <p className="text-[11px] font-mono text-[#4A453B] hidden md:block">
+                  No jargon. Just Frikkie.
                 </p>
               </div>
             </div>
           </div>
 
           {/* Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700/60">
+          <nav className="hidden md:flex items-center gap-1 p-1 bg-[#14100D] rounded-xl border border-[#4A453B]">
             <button
               onClick={() => onSelectTab('overview')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'overview'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-700/50'
+                  ? 'bg-[#E8672C] text-[#14100D]'
+                  : 'text-[#E8E2D4] hover:bg-[#4A453B]/30'
               }`}
             >
               <Activity className="w-3.5 h-3.5" />
@@ -78,10 +82,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onSelectTab('blog')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'blog'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-700/50'
+                  ? 'bg-[#E8672C] text-[#14100D]'
+                  : 'text-[#E8E2D4] hover:bg-[#4A453B]/30'
               }`}
             >
               <Rss className="w-3.5 h-3.5" />
@@ -90,61 +94,52 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onSelectTab('radar')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'radar'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-700/50'
+                  ? 'bg-[#E8672C] text-[#14100D]'
+                  : 'text-[#E8E2D4] hover:bg-[#4A453B]/30'
               }`}
             >
               <BarChart3 className="w-3.5 h-3.5" />
-              Radar Metrics
+              Radar Telemetry
             </button>
 
             <button
               onClick={() => onSelectTab('about')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'about'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-700/50'
+                  ? 'bg-[#E8672C] text-[#14100D]'
+                  : 'text-[#E8E2D4] hover:bg-[#4A453B]/30'
               }`}
             >
               <User className="w-3.5 h-3.5" />
-              About Me
+              About
             </button>
           </nav>
 
           {/* Right Utilities */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* Sync / Refresh Button */}
+            {/* Refresh Feed Button */}
             <button
               onClick={onRefreshData}
               disabled={isRefreshing}
-              title="Refresh Blog & Radar Feeds"
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors disabled:opacity-50"
+              title="Refresh Feeds"
+              className="p-2.5 rounded-lg bg-[#14100D] border border-[#4A453B] hover:border-[#39FF8A] text-[#E8E2D4] transition-colors disabled:opacity-50"
             >
-              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-indigo-500' : ''}`} />
-            </button>
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={onToggleDarkMode}
-              title="Toggle Light/Dark Theme"
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors"
-            >
-              {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
+              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-[#39FF8A]' : ''}`} />
             </button>
 
           </div>
 
         </div>
 
-        {/* Mobile Nav Bar */}
-        <div className="flex md:hidden items-center justify-around py-2.5 border-t border-slate-200/60 dark:border-slate-800/60 overflow-x-auto gap-1">
+        {/* Mobile Navigation Tabs */}
+        <div className="flex md:hidden items-center justify-around py-2.5 border-t border-[#4A453B] overflow-x-auto gap-1">
           <button
             onClick={() => onSelectTab('overview')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'overview' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-300'
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'overview' ? 'bg-[#E8672C] text-[#14100D]' : 'text-[#E8E2D4]'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
@@ -152,8 +147,8 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={() => onSelectTab('blog')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'blog' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-300'
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'blog' ? 'bg-[#E8672C] text-[#14100D]' : 'text-[#E8E2D4]'
             }`}
           >
             <Rss className="w-3.5 h-3.5" />
@@ -161,8 +156,8 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={() => onSelectTab('radar')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'radar' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-300'
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'radar' ? 'bg-[#E8672C] text-[#14100D]' : 'text-[#E8E2D4]'
             }`}
           >
             <BarChart3 className="w-3.5 h-3.5" />
@@ -170,8 +165,8 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={() => onSelectTab('about')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'about' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-300'
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'about' ? 'bg-[#E8672C] text-[#14100D]' : 'text-[#E8E2D4]'
             }`}
           >
             <User className="w-3.5 h-3.5" />

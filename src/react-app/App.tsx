@@ -11,7 +11,6 @@ import { Zap, ExternalLink } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
-  const [darkMode, setDarkMode] = useState<boolean>(true);
 
   // Data states
   const [profile, setProfile] = useState<ProfileData | null>(null);
@@ -23,15 +22,6 @@ export default function App() {
   const [isLoadingPosts, setIsLoadingPosts] = useState<boolean>(true);
   const [, setIsLoadingRadar] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-
-  // Dark Mode side effect
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
 
   // Fetch Profile
   const fetchProfile = async () => {
@@ -95,14 +85,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors pb-20 font-sans">
+    <div className="min-h-screen bg-[#14100D] text-[#E8E2D4] pb-20 font-serif">
       
       {/* Header Bar */}
       <Header
         activeTab={activeTab}
         onSelectTab={setActiveTab}
-        darkMode={darkMode}
-        onToggleDarkMode={() => setDarkMode(!darkMode)}
         onRefreshData={handleRefresh}
         isRefreshing={isRefreshing}
       />
@@ -175,16 +163,19 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+      <footer className="mt-20 border-t border-[#4A453B] py-8 text-center text-xs font-mono text-[#4A453B] bg-[#14100D]">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-indigo-500" />
-            <span className="font-bold text-slate-800 dark:text-slate-200">cyberfrikkie</span>
-            <span>• Powered by Cloudflare Workers, Hono & React</span>
+            <Zap className="w-4 h-4 text-[#39FF8A]" />
+            <span className="font-bold">
+              <span className="text-[#39FF8A]">cyber</span>
+              <span className="text-[#E8672C]">frikkie</span>
+            </span>
+            <span className="text-[#E8E2D4]"> — Tech, translated for the rest of us</span>
           </div>
 
-          <p>
-            Data sourced from <a href="https://blog.cloudflare.com" target="_blank" rel="noreferrer" className="text-indigo-500 underline">blog.cloudflare.com</a> & <a href="https://radar.cloudflare.com" target="_blank" rel="noreferrer" className="text-indigo-500 underline">radar.cloudflare.com</a>
+          <p className="text-[#4A453B]">
+            Data sourced from <a href="https://blog.cloudflare.com" target="_blank" rel="noreferrer" className="text-[#39FF8A] underline">blog.cloudflare.com</a> & <a href="https://radar.cloudflare.com" target="_blank" rel="noreferrer" className="text-[#E8672C] underline">radar.cloudflare.com</a>
           </p>
         </div>
       </footer>

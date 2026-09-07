@@ -16,49 +16,52 @@ export const AboutSection: React.FC<AboutSectionProps> = () => {
   return (
     <div className="space-y-8">
       
-      {/* Bio & Intro Card */}
-      <div className="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-6">
+      {/* Bio & Brand Essence Card */}
+      <div className="scanlines bg-[#14100D] p-6 sm:p-8 rounded-2xl border border-[#4A453B] space-y-6">
         
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 p-0.5 shadow-lg shadow-indigo-500/20 shrink-0">
-            <div className="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center">
-              <Zap className="w-7 h-7 text-amber-400" />
-            </div>
+          <div className="w-12 h-12 rounded-full border-2 border-[#39FF8A] bg-[#14100D] flex items-center justify-center shrink-0">
+            <Zap className="w-6 h-6 text-[#E8672C]" />
           </div>
 
           <div>
-            <h2 className="text-2xl font-black text-slate-900 dark:text-white">
-              About cyberfrikkie
-            </h2>
-            <p className="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider mt-0.5">
-              Cloudflare Edge Developer & Systems Engineer
+            <div className="flex items-baseline gap-1">
+              <span className="font-mono text-2xl font-black tracking-tight text-[#39FF8A]">
+                cyber
+              </span>
+              <span className="font-mono text-2xl font-black tracking-tight text-[#E8672C]">
+                frikkie
+              </span>
+            </div>
+            <p className="text-xs font-mono text-[#39FF8A] uppercase tracking-wider mt-0.5">
+              The smart friend at the braai who happens to know how AI works
             </p>
           </div>
         </div>
 
-        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          Welcome to my personal developer hub! I specialize in architecting distributed applications, real-time telemetry systems, and stateful AI workers on the Cloudflare Developer Platform. This application compiles live Cloudflare Blog updates and deep analytics from Cloudflare Radar into a high-performance web experience.
+        <p className="text-base font-serif text-[#E8E2D4] leading-relaxed">
+          Ja nee, tech moves fast — but it doesn't need to be buried in Big Tech jargon. Cyberfrikkie translates AI, gadgets, edge networks, and digital culture in plain, warm, South African-flavoured language so ordinary ouens can actually understand how things work.
         </p>
 
-        {/* Social / Link buttons */}
+        {/* Social / External Links */}
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-950 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200 dark:border-slate-700/60"
+            className="px-4 py-2 rounded-lg bg-[#14100D] border border-[#4A453B] hover:border-[#39FF8A] text-[#E8E2D4] text-xs font-mono font-bold transition-all flex items-center gap-2"
           >
-            <Code2 className="w-4 h-4 text-indigo-500" />
-            GitHub Profile
+            <Code2 className="w-4 h-4 text-[#39FF8A]" />
+            GitHub Repository
           </a>
 
           <a
             href="https://radar.cloudflare.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs font-bold transition-all flex items-center gap-2 border border-indigo-500/20"
+            className="px-4 py-2 rounded-lg bg-[#14100D] border border-[#4A453B] hover:border-[#E8672C] text-[#E8E2D4] text-xs font-mono font-bold transition-all flex items-center gap-2"
           >
-            <Globe className="w-4 h-4 text-indigo-500" />
+            <Globe className="w-4 h-4 text-[#E8672C]" />
             Cloudflare Radar
           </a>
 
@@ -66,74 +69,74 @@ export const AboutSection: React.FC<AboutSectionProps> = () => {
             href="https://blog.cloudflare.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-300 text-xs font-bold transition-all flex items-center gap-2 border border-amber-500/20"
+            className="px-4 py-2 rounded-lg bg-[#14100D] border border-[#4A453B] hover:border-[#39FF8A] text-[#E8E2D4] text-xs font-mono font-bold transition-all flex items-center gap-2"
           >
-            <ExternalLink className="w-4 h-4 text-amber-500" />
+            <ExternalLink className="w-4 h-4 text-[#39FF8A]" />
             Cloudflare Blog
           </a>
         </div>
 
       </div>
 
-      {/* Tech Stack & Architecture Grid */}
+      {/* Content Pillars & Infrastructure Stack Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        {/* Card 1: Cloudflare Stack */}
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
-          <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <Server className="w-5 h-5 text-indigo-500" />
-            Cloudflare Infrastructure Stack
+        {/* Card 1: Content Pillars */}
+        <div className="bg-[#14100D] p-6 rounded-2xl border border-[#4A453B] space-y-4">
+          <h3 className="text-base font-mono font-extrabold text-[#E8E2D4] flex items-center gap-2">
+            <Zap className="w-5 h-5 text-[#E8672C]" />
+            Content Pillars & Series
           </h3>
 
-          <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Cloudflare Workers</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Serverless Edge API</span>
+          <div className="space-y-3 text-xs font-mono">
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#39FF8A]">Ja Nee, AI</span>
+              <span className="text-[#4A453B]">AI news with healthy SA skepticism</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Hono Router</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Ultra-light HTTP Server</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8672C]">Boer Maak 'n Plan</span>
+              <span className="text-[#4A453B]">DIY fixes & clever workarounds</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Wrangler CLI & Assets</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-semibold">SPA Static Asset Binding</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#39FF8A]">Frikkie Explains</span>
+              <span className="text-[#4A453B]">Plain-language tech explainers</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Fast XML RSS Parser</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Edge Stream Feed Parsing</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8672C]">Load-shredding</span>
+              <span className="text-[#4A453B]">Power backup & surviving gear</span>
             </div>
           </div>
         </div>
 
-        {/* Card 2: Frontend & UI Design System */}
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
-          <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <Code2 className="w-5 h-5 text-amber-500" />
-            Frontend & Visual Architecture
+        {/* Card 2: Technical Architecture */}
+        <div className="bg-[#14100D] p-6 rounded-2xl border border-[#4A453B] space-y-4">
+          <h3 className="text-base font-mono font-extrabold text-[#E8E2D4] flex items-center gap-2">
+            <Server className="w-5 h-5 text-[#39FF8A]" />
+            Edge Worker Architecture
           </h3>
 
-          <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">React 19 & Vite</span>
-              <span className="text-amber-600 dark:text-amber-400 font-semibold">Modern Frontend Engine</span>
+          <div className="space-y-3 text-xs font-mono">
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8E2D4]">Cloudflare Workers</span>
+              <span className="text-[#39FF8A]">Edge API Backend</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Tailwind CSS & Plus Jakarta</span>
-              <span className="text-amber-600 dark:text-amber-400 font-semibold">Mock-LMS Design System</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8E2D4]">Hono Server</span>
+              <span className="text-[#39FF8A]">RSS & Telemetry Proxy</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Recharts Engine</span>
-              <span className="text-amber-600 dark:text-amber-400 font-semibold">Radar Data Visualizer</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8E2D4]">React 19 & Vite</span>
+              <span className="text-[#E8672C]">Modern UI Runtime</span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white">Lucide Icons</span>
-              <span className="text-amber-600 dark:text-amber-400 font-semibold">Minimal Iconography</span>
+            <div className="p-3 rounded-lg bg-[#14100D] border border-[#4A453B] flex items-center justify-between">
+              <span className="font-bold text-[#E8E2D4]">JetBrains Mono & Lora</span>
+              <span className="text-[#E8672C]">Terminal / Human Typography</span>
             </div>
           </div>
         </div>

@@ -85,12 +85,12 @@ const FALLBACK_BLOG_POSTS: BlogPost[] = [
 app.get("/api/profile", (c) => {
   return c.json({
     username: "cyberfrikkie",
-    displayName: "CyberFrikkie",
-    title: "Cloudflare & Edge Systems Developer",
-    location: "Global Edge Network",
-    bio: "Building hyper-fast web applications, AI agents, and security analytics on Cloudflare Workers, Hono, and React.",
+    displayName: "cyberfrikkie",
+    title: "Tech, translated for the rest of us",
+    location: "South Africa • Global Edge Network",
+    bio: "The smart friend at the braai who happens to know how AI works. No jargon. Just Frikkie.",
     avatar: "https://avatars.githubusercontent.com/u/1024097?v=4",
-    status: "Online • Cloudflare Worker Active",
+    status: "Online • Edge Worker Active",
     stats: {
       workerUptime: "99.99%",
       globalLocations: 330,

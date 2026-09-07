@@ -16,31 +16,31 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
   const latestPost = posts.length > 0 ? posts[0] : null;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       
       {/* Card 1: Blog Feed */}
       <div 
         onClick={() => onSelectTab('blog')}
-        className="bg-white dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md hover:border-indigo-500/50 transition-all cursor-pointer group"
+        className="bg-[#14100D] rounded-xl p-5 border border-[#4A453B] hover:border-[#39FF8A] transition-all cursor-pointer group"
       >
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] font-mono font-bold text-[#4A453B] uppercase tracking-wider">
             Cloudflare Blog Feed
           </span>
-          <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+          <div className="p-2 rounded-lg bg-[#39FF8A]/10 text-[#39FF8A] group-hover:scale-110 transition-transform">
             <Rss className="w-5 h-5" />
           </div>
         </div>
         <div className="mt-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-mono font-black text-[#E8E2D4]">
               {posts.length}
             </span>
-            <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <span className="text-xs font-mono font-semibold text-[#39FF8A]">
               Synced Posts
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">
+          <p className="text-xs font-serif text-[#E8E2D4]/70 mt-1 line-clamp-1">
             Latest: {latestPost ? latestPost.title : 'Cloudflare RSS Updates'}
           </p>
         </div>
@@ -49,77 +49,77 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
       {/* Card 2: Radar Netflows */}
       <div 
         onClick={() => onSelectTab('radar')}
-        className="bg-white dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md hover:border-cyan-500/50 transition-all cursor-pointer group"
+        className="bg-[#14100D] rounded-xl p-5 border border-[#4A453B] hover:border-[#E8672C] transition-all cursor-pointer group"
       >
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] font-mono font-bold text-[#4A453B] uppercase tracking-wider">
             Radar Global Netflows
           </span>
-          <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform">
+          <div className="p-2 rounded-lg bg-[#E8672C]/10 text-[#E8672C] group-hover:scale-110 transition-transform">
             <Activity className="w-5 h-5" />
           </div>
         </div>
         <div className="mt-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-mono font-black text-[#E8E2D4]">
               100
             </span>
-            <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400">
+            <span className="text-xs font-mono font-semibold text-[#E8672C]">
               Peak Traffic Index
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Avg Edge Latency: <span className="font-bold text-slate-700 dark:text-slate-200">{radarData?.keyStats.avgEdgeLatencyMs || '18ms'}</span>
+          <p className="text-xs font-serif text-[#E8E2D4]/70 mt-1">
+            Avg Edge Latency: <span className="font-mono font-bold text-[#39FF8A]">{radarData?.keyStats.avgEdgeLatencyMs || '18ms'}</span>
           </p>
         </div>
       </div>
 
-      {/* Card 3: Security & Attack Shield */}
+      {/* Card 3: Security Shield */}
       <div 
         onClick={() => onSelectTab('radar')}
-        className="bg-white dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md hover:border-purple-500/50 transition-all cursor-pointer group"
+        className="bg-[#14100D] rounded-xl p-5 border border-[#4A453B] hover:border-[#39FF8A] transition-all cursor-pointer group"
       >
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] font-mono font-bold text-[#4A453B] uppercase tracking-wider">
             Mitigated Threats/sec
           </span>
-          <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform">
+          <div className="p-2 rounded-lg bg-[#39FF8A]/10 text-[#39FF8A] group-hover:scale-110 transition-transform">
             <ShieldAlert className="w-5 h-5" />
           </div>
         </div>
         <div className="mt-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-mono font-black text-[#E8E2D4]">
               74.5M
             </span>
-            <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">
+            <span className="text-xs font-mono font-semibold text-[#39FF8A]">
               DDoS Blocked
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            RPKI Validation: <span className="font-bold text-slate-700 dark:text-slate-200">{radarData?.keyStats.rpkiValidationShare || '91.4%'}</span>
+          <p className="text-xs font-serif text-[#E8E2D4]/70 mt-1">
+            RPKI Validation: <span className="font-mono font-bold text-[#E8672C]">{radarData?.keyStats.rpkiValidationShare || '91.4%'}</span>
           </p>
         </div>
       </div>
 
-      {/* Card 4: Worker Stack */}
-      <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all group">
+      {/* Card 4: Architecture Stack */}
+      <div className="bg-[#14100D] rounded-xl p-5 border border-[#4A453B] transition-all">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] font-mono font-bold text-[#4A453B] uppercase tracking-wider">
             Architecture Stack
           </span>
-          <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
+          <div className="p-2 rounded-lg bg-[#E8672C]/10 text-[#E8672C]">
             <Cpu className="w-5 h-5" />
           </div>
         </div>
         <div className="mt-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-black text-slate-900 dark:text-white">
+            <span className="text-xl font-mono font-black text-[#E8E2D4]">
               Hono + React
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Deployed on <span className="font-bold text-amber-600 dark:text-amber-400">Cloudflare Workers</span>
+          <p className="text-xs font-serif text-[#E8E2D4]/70 mt-1">
+            Deployed on <span className="font-mono font-bold text-[#39FF8A]">Cloudflare Workers</span>
           </p>
         </div>
       </div>

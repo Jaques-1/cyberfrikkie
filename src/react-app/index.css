@@ -2,22 +2,64 @@
 
 @layer base {
   body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #14100D;
+    color: #E8E2D4;
+    font-family: 'Source Serif 4', Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, button, nav, code, pre {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 }
 
-/* Custom scrollbar matching mock-lms */
+/* CRT Scanlines Texture Overlay */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(20, 16, 13, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Glitch Offset Text Effect for Logo Lockup */
+.glitch-offset {
+  position: relative;
+  display: inline-block;
+}
+.glitch-offset::before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  top: 1px;
+  color: #39FF8A;
+  opacity: 0.35;
+  clip-path: inset(0 0 0 0);
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #14100D;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.4);
+  background: #4A453B;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(107, 114, 128, 0.6);
+  background: #E8672C;
 }
