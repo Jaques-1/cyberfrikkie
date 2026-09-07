@@ -1,66 +1,200 @@
-// src/App.tsx
+import { useState, useEffect } from 'react';
+import { BlogPost, RadarData, ProfileData, TabType } from './types';
+import { Header } from './components/Header';
+import { HeroBanner } from './components/HeroBanner';
+import { OverviewCards } from './components/OverviewCards';
+import { BlogFeed } from './components/BlogFeed';
+import { BlogDetailModal } from './components/BlogDetailModal';
+import { RadarDashboard } from './components/RadarDashboard';
+import { AboutSection } from './components/AboutSection';
+import { Zap, ExternalLink } from 'lucide-react';
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
-import "./App.css";
+export default function App() {
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
-function App() {
-	const [count, setCount] = useState(0);
-	const [name, setName] = useState("unknown");
+  // Data states
+  const [profile, setProfile] = useState<ProfileData | null>(null);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [radarData, setRadarData] = useState<RadarData | null>(null);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
-	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-				<a href="https://hono.dev/" target="_blank">
-					<img src={honoLogo} className="logo cloudflare" alt="Hono logo" />
-				</a>
-				<a href="https://workers.cloudflare.com/" target="_blank">
-					<img
-						src={cloudflareLogo}
-						className="logo cloudflare"
-						alt="Cloudflare logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React + Hono + Cloudflare</h1>
-			<div className="card">
-				<button
-					onClick={() => setCount((count) => count + 1)}
-					aria-label="increment"
-				>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<div className="card">
-				<button
-					onClick={() => {
-						fetch("/api/")
-							.then((res) => res.json() as Promise<{ name: string }>)
-							.then((data) => setName(data.name));
-					}}
-					aria-label="get name"
-				>
-					Name from API is: {name}
-				</button>
-				<p>
-					Edit <code>worker/index.ts</code> to change the name
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the logos to learn more</p>
-		</>
-	);
+  // Loading states
+  const [isLoadingPosts, setIsLoadingPosts] = useState<boolean>(true);
+  const [, setIsLoadingRadar] = useState<boolean>(true);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+
+  // Dark Mode side effect
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  // Fetch Profile
+  const fetchProfile = async () => {
+    try {
+      const res = await fetch('/api/profile');
+      if (res.ok) {
+        const data = await res.json();
+        setProfile(data);
+      }
+    } catch (e) {
+      console.warn('Profile fetch fallback active');
+    }
+  };
+
+  // Fetch Blog Posts
+  const fetchPosts = async () => {
+    setIsLoadingPosts(true);
+    try {
+      const res = await fetch('/api/blog/posts');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.posts)) {
+          setPosts(data.posts);
+        }
+      }
+    } catch (e) {
+      console.warn('Blog fetch error:', e);
+    } finally {
+      setIsLoadingPosts(false);
+    }
+  };
+
+  // Fetch Radar Metrics
+  const fetchRadar = async () => {
+    setIsLoadingRadar(true);
+    try {
+      const res = await fetch('/api/radar/summary');
+      if (res.ok) {
+        const data = await res.json();
+        setRadarData(data);
+      }
+    } catch (e) {
+      console.warn('Radar fetch error:', e);
+    } finally {
+      setIsLoadingRadar(false);
+    }
+  };
+
+  // Global Refresh Action
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await Promise.all([fetchProfile(), fetchPosts(), fetchRadar()]);
+    setIsRefreshing(false);
+  };
+
+  // Initial Fetch
+  useEffect(() => {
+    fetchProfile();
+    fetchPosts();
+    fetchRadar();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors pb-20 font-sans">
+      
+      {/* Header Bar */}
+      <Header
+        activeTab={activeTab}
+        onSelectTab={setActiveTab}
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode(!darkMode)}
+        onRefreshData={handleRefresh}
+        isRefreshing={isRefreshing}
+      />
+
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
+        
+        {/* Profile Hero Banner */}
+        <HeroBanner profile={profile} />
+
+        {/* Overview Metric Cards Row */}
+        <OverviewCards
+          posts={posts}
+          radarData={radarData}
+          onSelectTab={setActiveTab}
+        />
+
+        {/* Main Tab Content */}
+        {activeTab === 'overview' && (
+          <div className="space-y-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                Latest Cloudflare Intelligence & Posts
+              </h2>
+              <button
+                onClick={() => setActiveTab('blog')}
+                className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+              >
+                View All Posts <ExternalLink className="w-3 h-3" />
+              </button>
+            </div>
+
+            <BlogFeed
+              posts={posts.slice(0, 6)}
+              onSelectPost={setSelectedPost}
+              isLoading={isLoadingPosts}
+            />
+
+            <RadarDashboard radarData={radarData} />
+          </div>
+        )}
+
+        {activeTab === 'blog' && (
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                Cloudflare Official Blog Feed
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Real-time RSS updates from blog.cloudflare.com parsed at the edge.
+              </p>
+            </div>
+
+            <BlogFeed
+              posts={posts}
+              onSelectPost={setSelectedPost}
+              isLoading={isLoadingPosts}
+            />
+          </div>
+        )}
+
+        {activeTab === 'radar' && (
+          <RadarDashboard radarData={radarData} />
+        )}
+
+        {activeTab === 'about' && (
+          <AboutSection profile={profile} />
+        )}
+
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Zap className="w-4 h-4 text-indigo-500" />
+            <span className="font-bold text-slate-800 dark:text-slate-200">cyberfrikkie</span>
+            <span>• Powered by Cloudflare Workers, Hono & React</span>
+          </div>
+
+          <p>
+            Data sourced from <a href="https://blog.cloudflare.com" target="_blank" rel="noreferrer" className="text-indigo-500 underline">blog.cloudflare.com</a> & <a href="https://radar.cloudflare.com" target="_blank" rel="noreferrer" className="text-indigo-500 underline">radar.cloudflare.com</a>
+          </p>
+        </div>
+      </footer>
+
+      {/* Article Detail Drawer Modal */}
+      <BlogDetailModal
+        post={selectedPost}
+        onClose={() => setSelectedPost(null)}
+      />
+
+    </div>
+  );
 }
-
-export default App;
